@@ -13,15 +13,15 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0,
-    },
     email: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
     },
     role: {
       // 0: User, 1: Admin, 2: Sleep
@@ -30,7 +30,8 @@ User.init(
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: '00 0 000 000 0000',
     },
     numberReports: {
       type: DataTypes.INTEGER,
