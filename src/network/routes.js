@@ -1,5 +1,7 @@
+const apiRouter = require('../api/apiRoutes');
+
 const routes = (server) => {
-  return server;
+  server.use('/', apiRouter);
 };
 
 module.exports = routes;

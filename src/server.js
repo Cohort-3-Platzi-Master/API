@@ -10,29 +10,28 @@ const errors = require('./network/errors');
 const app = express();
 
 app.use(bodyParser.json());
+const router = require('./network/routes');
+router(app);
 
 app.use(errors);
 
 app.listen(config.app.port, () => {
-	if (config.app.env === 'development') {
-		debug(
-			`Listening on ${config.app.serverHostDevelopment}:${config.app.port}, this is a development server`
-		);
-	} else {
-		debug(
-			`Listening on http://localhost:${config.app.port} this is a production server`
-		);
-	}
+  if (config.app.env === 'development') {
+    debug(
+      `Listening on ${config.app.serverHostDevelopment}:${config.app.port}, this is a development server`
+    );
+  } else {
+    debug(
+      `Listening on http://localhost:${config.app.port} this is a production server`
+    );
+  }
 
-	sequelize
-		.sync({ force: true })
-		.then(() => {
-			connect('Data base is connect!!!');
-		})
-		.catch((error) => {
-			connect(
-				'There is a error with the data base connect',
-				error
-			);
-		});
+  sequelize
+    .sync({ force: true })
+    .then(() => {
+      connect('Data base is connect!!!');
+    })
+    .catch((error) => {
+      connect('There is a error with the data base connect', error);
+    });
 });
